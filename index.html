@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>収録前の休憩</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+
+    <style>
+        html {
+            height: 100%;
+
+        }
+
+        body {
+            height: 100%;
+            background-color: black;
+
+        }
+
+        video.video-full {
+            width: 100vw;
+            height:100vh;
+            min-height: 100vh;
+
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+
+        }
+
+    </style>
+</head>
+<body>
+        <video class="syamu video-full"></video>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            $(function() {
+                var VIDEO_ELEMENT = '.syamu';
+                var video = $(VIDEO_ELEMENT).get(0);
+
+                var position = 0;
+                
+                $(VIDEO_ELEMENT).attr("src", "./kubihuri_1.mp4").trigger("load");
+
+                $(VIDEO_ELEMENT).on('loadeddata', function() {
+
+                    $(this).mousemove(function(ev) {
+                            position = video.duration * ( ev.pageX / $(this).width() );
+                    });
+
+                });
+
+                setInterval(function() {
+                    video.currentTime = position;
+
+                // イベント発火した時点でcurrentTimeを操作するのはfirefox以外だと暴れるからダメだで。   
+                // firefoxはchromeよりフレームレート低い感じなので仕方ないと思いまｽｩｩｩｩ...
+                }, 120);
+
+            });
+
+        </script>
+</body>
+</html>
