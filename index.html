@@ -56,7 +56,14 @@
                 $(VIDEO_ELEMENT).on('loadeddata', function() {
 
                     $(this).mousemove(function(ev) {
-                            position = video.duration * ( ev.pageX / $(this).width() );
+                        position = video.duration * ( ev.pageX / $(this).width() );
+                        
+                    });
+
+                    $(this).on('touchmove', function(ev) {
+                        var touchObj = ev.changedTouches[0];
+                        position = video.duration * ( touchObj.pageX / $(this).width() );
+
                     });
 
                 });
