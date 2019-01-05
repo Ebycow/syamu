@@ -57,7 +57,7 @@
 
                     $(this).mousemove(function(ev) {
                         position = video.duration * ( ev.pageX / $(this).width() );
-                        
+
                     });
 
                     $(this).on('touchmove', function(ev) {
@@ -68,7 +68,15 @@
 
                 });
 
+                var titleMessage = 'まずは…まずは…まぁずわぁ！！！こいつでぇ…このジュースで…喉をぉ、潤すぞおおおおおおおおおおおおおおぉぉいい！！エェイウォオオウ↑！！　　';
+                var titleCount = 0;
                 setInterval(function() {
+                    titleCount++;
+                    $('title').text(titleMessage.slice(titleCount, titleCount + 15));
+                    if(titleCount + 15 >= titleMessage.length){
+                        titleCount = 0;
+                    }
+
                     video.currentTime = position;
 
                 // イベント発火した時点でcurrentTimeを操作するのはfirefox以外だと暴れるからダメだで。   
