@@ -68,14 +68,11 @@
 
                 });
 
-                var titleMessage = 'まずは…まずは…まぁずわぁ！！！こいつでぇ…このジュースで…喉をぉ、潤すぞおおおおおおおおおおおおおおぉぉいい！！エェイウォオオウ↑！！　　';
+                var titleMessage = 'まずは…まずは…まぁずわぁ！！！こいつでぇ…このジュースで…喉をぉ、潤すぞおおおおおおおおおおおおおおぉぉいい！！エェイウォオオウ↑！！';
                 var titleCount = 0;
                 setInterval(function() {
+                    $('title').text(titleMessage.slice(titleCount % ( titleMessage.length - 1 ) , titleCount % ( titleMessage.length - 1 )  + 15));
                     titleCount++;
-                    $('title').text(titleMessage.slice(titleCount, titleCount + 15));
-                    if(titleCount + 15 >= titleMessage.length){
-                        titleCount = 0;
-                    }
 
                     video.currentTime = position;
 
